@@ -1,5 +1,6 @@
 import 'package:e_commerce_apps/common/constans.dart';
-import 'package:e_commerce_apps/model/app/home/wearable_model.dart';
+import 'package:e_commerce_apps/model/app/home/colors_model.dart';
+import 'package:e_commerce_apps/model/app/home/item_model.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
 import 'package:e_commerce_apps/page/home/detail_home_page.dart';
 import 'package:e_commerce_apps/page/home/search_home_page.dart';
@@ -21,7 +22,9 @@ class _HomePageState extends State<HomePage>
   int _index;
   Helper _helper;
   TextEditingController _textController;
-  List<WearableModel> _data;
+  List<ItemModel> _data;
+  List<ItemModel> _dataLaptop;
+  List<ItemModel> _dataDrone;
   SingletonModel _model;
 
   @override
@@ -32,20 +35,106 @@ class _HomePageState extends State<HomePage>
     _helper = Helper();
     _textController = TextEditingController();
     _data = [
-      WearableModel(
+      ItemModel(
         id: 0,
         image: kImgAssetHome2,
         name: "Apple Watch",
         version: "Series 6 . Red",
         price: 359,
+        colors: [
+          ColorsModel(
+            colorName: "Red",
+            colorCode: HexColor("#eb3a34"),
+          ),
+          ColorsModel(
+            colorName: "Black",
+            colorCode: HexColor("#000000"),
+          ),
+          ColorsModel(
+            colorName: "Green",
+            colorCode: HexColor("#1dc471"),
+          )
+        ],
+        title: "Get Apple Watch",
+        descriptions:
+            "Available discount for purchase this year. Let's update your device.",
       ),
-      WearableModel(
+      ItemModel(
         id: 1,
-        image: kImgAssetHome2,
+        image: kImgAssetHome3,
         name: "Samsung Galaxy Watch",
         version: "Active . Green",
         price: 159,
+        colors: [
+          ColorsModel(
+            colorName: "Old Green",
+            colorCode: HexColor("#385c4a"),
+          ),
+        ],
+        title: "Get Samsung Galaxy Watch",
+        descriptions:
+            "Available discount for purchase this year. Let's update your device.",
       )
+    ];
+    _dataLaptop = [
+      ItemModel(
+        id: 0,
+        image: kImgAssetAsus,
+        name: "ASUS",
+        version: "Vivobook . 14",
+        price: 480,
+        colors: [
+          ColorsModel(
+            colorName: "Grey",
+            colorCode: HexColor("#cfd1d0"),
+          ),
+          ColorsModel(
+            colorName: "Black",
+            colorCode: HexColor("#000000"),
+          ),
+        ],
+        title: "Get ASUS Vivobook 14",
+        descriptions:
+            "Available discount for purchase this year. Let's update your device.",
+      ),
+      ItemModel(
+        id: 1,
+        image: kImgAssetMacbook,
+        name: "Macbook",
+        version: "Pro . 2020",
+        price: 961,
+        colors: [
+          ColorsModel(
+            colorName: "Silver",
+            colorCode: HexColor("#cfd1d0"),
+          ),
+        ],
+        title: "Get Macbook Pro 2020",
+        descriptions:
+            "Available discount for purchase this year. Let's update your device.",
+      ),
+    ];
+    _dataDrone = [
+      ItemModel(
+        id: 0,
+        image: kImgAssetDrone,
+        name: "Drone Dji",
+        version: "Mini . 2",
+        price: 343,
+        colors: [
+          ColorsModel(
+            colorName: "White",
+            colorCode: HexColor("#FFFFFF"),
+          ),
+          ColorsModel(
+            colorName: "Black",
+            colorCode: HexColor("000000"),
+          )
+        ],
+        title: "Get Drone Dji",
+        descriptions:
+            "Available discount for purchase this year. Let's update your device.",
+      ),
     ];
   }
 
@@ -83,36 +172,37 @@ class _HomePageState extends State<HomePage>
                         });
                       },
                       decoration: InputDecoration(
-                          hintText: "Search",
-                          hintStyle: const TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                        hintText: "Search",
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Colors.grey[300],
+                            width: 3,
                           ),
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                              color: Colors.grey[300],
-                              width: 3,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Colors.grey[300],
+                            width: 3,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                              color: Colors.grey[300],
-                              width: 3,
-                            ),
+                        ),
+                        prefixIcon: IconButton(
+                          icon: const Icon(
+                            Icons.search,
+                            color: Colors.black,
+                            size: 20,
                           ),
-                          prefixIcon: IconButton(
-                            icon: const Icon(
-                              Icons.search,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                            onPressed: () {},
-                          )),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -254,8 +344,11 @@ class _HomePageState extends State<HomePage>
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: 300,
-                child: Image.asset(_data[index].image),
+                bottom: 320,
+                child: Image.asset(
+                  _data[index].image,
+                  height: 150,
+                ),
               ),
             ],
           ),
@@ -268,7 +361,86 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _laptops() {
-    return Container();
+    return ListView.separated(
+      padding: const EdgeInsets.all(20),
+      itemCount: _dataLaptop.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () => _helper.jumpToPage(context,
+              page: DetailHomePage(data: _dataLaptop[index])),
+          child: Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 40),
+                height: 220,
+                width: 190,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      _dataLaptop[index].name,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      _dataLaptop[index].version,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.attach_money,
+                          color: HexColor("#5956E9"),
+                          size: 15,
+                        ),
+                        Text(
+                          "${_dataLaptop[index].price}",
+                          style: TextStyle(
+                            color: HexColor("#5956E9"),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30)
+                  ],
+                ),
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 320,
+                child: Image.asset(
+                  _dataLaptop[index].image,
+                  height: 150,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(width: 20);
+      },
+    );
   }
 
   Widget _phones() {
@@ -276,6 +448,85 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _drones() {
-    return Container();
+    return ListView.separated(
+      padding: const EdgeInsets.all(20),
+      itemCount: _dataDrone.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () => _helper.jumpToPage(context,
+              page: DetailHomePage(data: _dataDrone[index])),
+          child: Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 40),
+                height: 220,
+                width: 190,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      _dataDrone[index].name,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      _dataDrone[index].version,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.attach_money,
+                          color: HexColor("#5956E9"),
+                          size: 15,
+                        ),
+                        Text(
+                          "${_dataDrone[index].price}",
+                          style: TextStyle(
+                            color: HexColor("#5956E9"),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30)
+                  ],
+                ),
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 320,
+                child: Image.asset(
+                  _dataDrone[index].image,
+                  height: 150,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(width: 20);
+      },
+    );
   }
 }
