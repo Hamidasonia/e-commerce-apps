@@ -263,20 +263,22 @@ class _LoginPageState extends State<LoginPage>
             ),
           ),
           const SizedBox(height: 50),
-          Material(
-            clipBehavior: Clip.antiAlias,
-            color: HexColor("#EF5DA8"),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-            child: MaterialButton(
-              minWidth: 300,
-              height: 60,
-              onPressed: () {
-                _helper.moveToPage(context, page: MainPage());
-              },
-              child: const Text(
-                "Login",
-                style: TextStyle(fontSize: 16, color: Colors.white),
+          Center(
+            child: Material(
+              clipBehavior: Clip.antiAlias,
+              color: HexColor("#EF5DA8"),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: MaterialButton(
+                minWidth: 300,
+                height: 60,
+                onPressed: () {
+                  _helper.moveToPage(context, page: MainPage());
+                },
+                child: const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ),
             ),
           ),
