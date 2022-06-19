@@ -28,7 +28,11 @@ class _OnBoardPageState extends State<OnBoardPage> {
         children: [
           Positioned(
             bottom: 70,
-              child: Image.asset(kImgAssetOnBoard, width: 360,)),
+            child: Image.asset(
+              kImgAssetOnBoard,
+              width: 360,
+            ),
+          ),
           _buildBody()
         ],
       ),

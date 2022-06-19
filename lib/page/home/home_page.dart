@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage>
     ];
     _dataLaptop = [
       ItemModel(
-        id: 0,
+        id: 3,
         image: kImgAssetAsus,
         name: "ASUS",
         version: "Vivobook . 14",
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage>
             "Available discount for purchase this year. Let's update your device.",
       ),
       ItemModel(
-        id: 1,
+        id: 4,
         image: kImgAssetMacbook,
         name: "Macbook",
         version: "Pro . 2020",
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage>
     ];
     _dataDrone = [
       ItemModel(
-        id: 0,
+        id: 5,
         image: kImgAssetDrone,
         name: "Drone Dji",
         version: "Mini . 2",
@@ -290,7 +290,7 @@ class _HomePageState extends State<HomePage>
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 40),
-                height: 220,
+                height: 250,
                 width: 190,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -342,9 +342,9 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
               Positioned(
-                left: 0,
-                right: 0,
-                bottom: 320,
+                left: Constants.padding,
+                right: Constants.padding,
+                top: Constants.padding - 5,
                 child: Image.asset(
                   _data[index].image,
                   height: 150,
@@ -425,9 +425,9 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
               Positioned(
-                left: 0,
-                right: 0,
-                bottom: 320,
+                left: Constants.padding,
+                right: Constants.padding,
+                top: Constants.padding - 30,
                 child: Image.asset(
                   _dataLaptop[index].image,
                   height: 150,
@@ -512,9 +512,9 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
               Positioned(
-                left: 0,
-                right: 0,
-                bottom: 320,
+                left: Constants.padding,
+                right: Constants.padding,
+                top: Constants.padding - 30,
                 child: Image.asset(
                   _dataDrone[index].image,
                   height: 150,

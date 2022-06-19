@@ -66,8 +66,11 @@ class _DetailHomePageState extends State<DetailHomePage> {
         Positioned(
           bottom: 0,
           child: Container(
-            padding:
-                const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 20),
+            padding: const EdgeInsets.only(
+              top: 24,
+              left: 24,
+              right: 24,
+            ),
             width: width,
             height: MediaQuery.of(context).size.height * .55,
             decoration: const BoxDecoration(
@@ -323,7 +326,8 @@ class _DetailHomePageState extends State<DetailHomePage> {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
