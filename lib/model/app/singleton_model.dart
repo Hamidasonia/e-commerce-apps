@@ -18,6 +18,7 @@ class SingletonModel {
 
   static SingletonModel get shared => _singleton;
 
+  bool isLogin;
   UserModel user;
   String onindoToken;
   BuildContext context;
