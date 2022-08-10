@@ -37,51 +37,33 @@ class _HomePageState extends State<HomePage>
     _data = [
       ItemModel(
         id: 0,
-        image: kImgAssetHome2,
-        name: "Apple Watch",
-        version: "Series 6 . Red",
+        image: "assets/images/product_1.png",
+        detailImage: "assets/images/detail_product_1.jpg",
+        name: "LED Lamp",
+        version: "W49",
         price: 359,
         colors: [
-          ColorsModel(
-            colorName: "Red",
-            colorCode: HexColor("#eb3a34"),
-          ),
           ColorsModel(
             colorName: "Black",
             colorCode: HexColor("#000000"),
           ),
           ColorsModel(
-            colorName: "Green",
-            colorCode: HexColor("#1dc471"),
+            colorName: "White",
+            colorCode: HexColor("#FFFFFF"),
           )
         ],
-        title: "Get Apple Watch",
+        title: "Get LED Lamp 249",
         descriptions:
-            "Available discount for purchase this year. Let's update your device.",
+            "Available discount for purchase this year. Let's update your tools.",
       ),
-      ItemModel(
-        id: 1,
-        image: kImgAssetHome3,
-        name: "Samsung Galaxy Watch",
-        version: "Active . Green",
-        price: 159,
-        colors: [
-          ColorsModel(
-            colorName: "Old Green",
-            colorCode: HexColor("#385c4a"),
-          ),
-        ],
-        title: "Get Samsung Galaxy Watch",
-        descriptions:
-            "Available discount for purchase this year. Let's update your device.",
-      )
     ];
     _dataLaptop = [
       ItemModel(
-        id: 3,
-        image: kImgAssetAsus,
-        name: "ASUS",
-        version: "Vivobook . 14",
+        id: 1,
+        image: "assets/images/product_3.png",
+        detailImage: "assets/images/detail_product_3.jpg",
+        name: "Lenovo",
+        version: "E 420 . Core i3",
         price: 480,
         colors: [
           ColorsModel(
@@ -93,47 +75,70 @@ class _HomePageState extends State<HomePage>
             colorCode: HexColor("#000000"),
           ),
         ],
-        title: "Get ASUS Vivobook 14",
+        title: "Get Lenovo E 420",
         descriptions:
             "Available discount for purchase this year. Let's update your device.",
       ),
       ItemModel(
-        id: 4,
-        image: kImgAssetMacbook,
+        id: 2,
+        image: "assets/images/product_4.png",
+        detailImage: "assets/images/detail_product_4.jpg",
         name: "Macbook",
-        version: "Pro . 2020",
+        version: "Air . 2012",
         price: 961,
         colors: [
           ColorsModel(
             colorName: "Silver",
             colorCode: HexColor("#cfd1d0"),
           ),
+          ColorsModel(
+            colorName: "White",
+            colorCode: HexColor("#ffffff"),
+          ),
         ],
-        title: "Get Macbook Pro 2020",
+        title: "Get Macbook Air 2012",
         descriptions:
             "Available discount for purchase this year. Let's update your device.",
       ),
     ];
     _dataDrone = [
       ItemModel(
-        id: 5,
-        image: kImgAssetDrone,
-        name: "Drone Dji",
-        version: "Mini . 2",
+        id: 3,
+        image: "assets/images/product_5.png",
+        detailImage: "assets/images/detail_product_5.jpg",
+        name: "Smart Watch",
+        version: "Mito . Gear 10",
         price: 343,
         colors: [
           ColorsModel(
-            colorName: "White",
-            colorCode: HexColor("#FFFFFF"),
+            colorName: "Red",
+            colorCode: HexColor("#c2250a"),
           ),
           ColorsModel(
             colorName: "Black",
             colorCode: HexColor("000000"),
           )
         ],
-        title: "Get Drone Dji",
+        title: "Get Mito Gear 10",
         descriptions:
             "Available discount for purchase this year. Let's update your device.",
+      ),
+      ItemModel(
+        id: 4,
+        image: "assets/images/product_2.png",
+        detailImage: "assets/images/detail_product_2.jpg",
+        name: "Smart Band",
+        version: "Nike . Band LED",
+        price: 343,
+        colors: [
+          ColorsModel(
+            colorName: "Black",
+            colorCode: HexColor("000000"),
+          )
+        ],
+        title: "Get Nike Band LED",
+        descriptions:
+        "Available discount for purchase this year. Let's update your device.",
       ),
     ];
   }
@@ -254,10 +259,10 @@ class _HomePageState extends State<HomePage>
                     });
                   },
                   tabs: const [
-                    Tab(child: Text("Wearable")),
+                    Tab(child: Text("Hardware")),
                     Tab(child: Text("Laptops")),
                     Tab(child: Text("Phones")),
-                    Tab(child: Text("Drones")),
+                    Tab(child: Text("Wearable")),
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -345,9 +350,11 @@ class _HomePageState extends State<HomePage>
                 left: Constants.padding,
                 right: Constants.padding,
                 top: Constants.padding - 5,
-                child: Image.asset(
-                  _data[index].image,
-                  height: 150,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(
+                    _data[index].image,
+                  ),
+                  maxRadius: 60,
                 ),
               ),
             ],
@@ -427,10 +434,12 @@ class _HomePageState extends State<HomePage>
               Positioned(
                 left: Constants.padding,
                 right: Constants.padding,
-                top: Constants.padding - 30,
-                child: Image.asset(
-                  _dataLaptop[index].image,
-                  height: 150,
+                top: Constants.padding - 5,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(
+                    _dataLaptop[index].image,
+                  ),
+                  maxRadius: 60,
                 ),
               ),
             ],
@@ -514,10 +523,12 @@ class _HomePageState extends State<HomePage>
               Positioned(
                 left: Constants.padding,
                 right: Constants.padding,
-                top: Constants.padding - 30,
-                child: Image.asset(
-                  _dataDrone[index].image,
-                  height: 150,
+                top: Constants.padding - 5,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(
+                    _dataDrone[index].image,
+                  ),
+                  maxRadius: 60,
                 ),
               ),
             ],
