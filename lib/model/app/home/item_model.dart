@@ -4,6 +4,7 @@ class ItemModel {
   int id;
   String name;
   String image;
+  String detailImage;
   List<ColorsModel> colors;
   String version;
   String title;
@@ -14,6 +15,7 @@ class ItemModel {
     this.id,
     this.name,
     this.image,
+    this.detailImage,
     this.colors,
     this.version,
     this.title,

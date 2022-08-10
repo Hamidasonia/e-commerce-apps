@@ -4,6 +4,7 @@ import 'package:e_commerce_apps/model/app/singleton_model.dart';
 import 'package:e_commerce_apps/tool/helper.dart';
 import 'package:e_commerce_apps/tool/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:panorama/panorama.dart';
 
 class DetailHomePage extends StatefulWidget {
   final ItemModel data;
@@ -50,9 +51,8 @@ class _DetailHomePageState extends State<DetailHomePage> {
           decoration: BoxDecoration(
             color: HexColor("#F6F6F9"),
           ),
-          child: Container(
-            margin: const EdgeInsets.all(50),
-            child: Image.asset(widget.data.image),
+          child: Panorama(
+            child: Image.asset(widget.data.detailImage),
           ),
         ),
         Positioned(
