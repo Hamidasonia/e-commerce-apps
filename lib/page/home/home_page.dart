@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage>
         ],
         title: "Get Nike Band LED",
         descriptions:
-        "Available discount for purchase this year. Let's update your device.",
+            "Available discount for purchase this year. Let's update your device.",
       ),
     ];
   }
@@ -288,12 +288,12 @@ class _HomePageState extends State<HomePage>
       itemCount: _data.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () => _helper.jumpToPage(context,
-              page: DetailHomePage(data: _data[index])),
-          child: Stack(
-            children: [
-              Container(
+        return Stack(
+          children: [
+            InkWell(
+              onTap: () => _helper.jumpToPage(context,
+                  page: DetailHomePage(data: _data[index])),
+              child: Container(
                 margin: const EdgeInsets.only(top: 40),
                 height: 250,
                 width: 190,
@@ -346,19 +346,19 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
-              Positioned(
-                left: Constants.padding,
-                right: Constants.padding,
-                top: Constants.padding - 5,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    _data[index].image,
-                  ),
-                  maxRadius: 60,
+            ),
+            Positioned(
+              left: Constants.padding,
+              right: Constants.padding,
+              top: Constants.padding - 5,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  _data[index].image,
                 ),
+                maxRadius: 60,
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
       separatorBuilder: (BuildContext context, int index) {
@@ -373,12 +373,12 @@ class _HomePageState extends State<HomePage>
       itemCount: _dataLaptop.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () => _helper.jumpToPage(context,
-              page: DetailHomePage(data: _dataLaptop[index])),
-          child: Stack(
-            children: [
-              Container(
+        return Stack(
+          children: [
+            InkWell(
+              onTap: () => _helper.jumpToPage(context,
+                  page: DetailHomePage(data: _dataLaptop[index])),
+              child: Container(
                 margin: const EdgeInsets.only(top: 40),
                 height: 220,
                 width: 190,
@@ -431,19 +431,19 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
-              Positioned(
-                left: Constants.padding,
-                right: Constants.padding,
-                top: Constants.padding - 5,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    _dataLaptop[index].image,
-                  ),
-                  maxRadius: 60,
+            ),
+            Positioned(
+              left: Constants.padding,
+              right: Constants.padding,
+              top: Constants.padding - 5,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  _dataLaptop[index].image,
                 ),
+                maxRadius: 60,
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
       separatorBuilder: (BuildContext context, int index) {
@@ -462,12 +462,12 @@ class _HomePageState extends State<HomePage>
       itemCount: _dataDrone.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () => _helper.jumpToPage(context,
-              page: DetailHomePage(data: _dataDrone[index])),
-          child: Stack(
-            children: [
-              Container(
+        return Stack(
+          children: [
+            InkWell(
+              onTap: () => _helper.jumpToPage(context,
+                  page: DetailHomePage(data: _dataDrone[index])),
+              child: Container(
                 margin: const EdgeInsets.only(top: 40),
                 height: 220,
                 width: 190,
@@ -520,19 +520,19 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
-              Positioned(
-                left: Constants.padding,
-                right: Constants.padding,
-                top: Constants.padding - 5,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    _dataDrone[index].image,
-                  ),
-                  maxRadius: 60,
+            ),
+            Positioned(
+              left: Constants.padding,
+              right: Constants.padding,
+              top: Constants.padding - 5,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  _dataDrone[index].image,
                 ),
+                maxRadius: 60,
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
       separatorBuilder: (BuildContext context, int index) {

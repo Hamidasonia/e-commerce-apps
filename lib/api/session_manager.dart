@@ -5,6 +5,7 @@ class SessionManager {
 
   Future<void> saveSession(int myId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('id', myId ?? 0);
   }
 
   Future getSession() async {
