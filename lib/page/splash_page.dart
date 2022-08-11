@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:e_commerce_apps/api/session_manager.dart';
 import 'package:e_commerce_apps/common/constans.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
-import 'package:e_commerce_apps/page/home/home_page.dart';
 import 'package:e_commerce_apps/page/main_page.dart';
-import 'package:e_commerce_apps/page/onboard_page.dart';
 import 'package:e_commerce_apps/tool/permissions_service.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +23,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
-    )
-      ..addListener(() {
+    )..addListener(() {
         setState(() {});
       });
     _controller.forward();
     _model = SingletonModel.withContext(context);
     _checkPermission();
-    _cekSession();
+    // _cekSession();
+    _startSplash();
   }
 
   void _checkPermission() async {
@@ -44,7 +41,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   void _checkData() {
     _model.item = [];
     _model.isLogin = false;
-    _model.user.data.users = [];
+    // _model.user.data.users = [];
   }
 
   @override
@@ -53,19 +50,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  Future _cekSession() async {
-    return Future.delayed(const Duration(milliseconds: 5900), () {
-      session.getSession().then((value) {
-        if (value != null) {
-          Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (_) => MainPage()), (
-              route) => false);
-        } else {
-          Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (_) => OnBoardPage()), (
-              route) => false);
-        }
-      });
+  _startSplash() {
+    var duration = const Duration(milliseconds: 5900);
+    return Timer(duration, () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+        return MainPage();
+      }));
     });
   }
 

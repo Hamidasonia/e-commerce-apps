@@ -1,9 +1,12 @@
+import 'package:e_commerce_apps/api/session_manager.dart';
 import 'package:e_commerce_apps/model/app/home/item_model.dart';
 import 'package:e_commerce_apps/model/app/home/selected_item_model.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
+import 'package:e_commerce_apps/page/onboard_page.dart';
 import 'package:e_commerce_apps/tool/helper.dart';
 import 'package:e_commerce_apps/tool/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:panorama/panorama.dart';
 
 class DetailHomePage extends StatefulWidget {
@@ -18,12 +21,50 @@ class DetailHomePage extends StatefulWidget {
 class _DetailHomePageState extends State<DetailHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey;
   SingletonModel _model;
+  bool _processAdd;
 
   @override
   void initState() {
     super.initState();
     _scaffoldKey = GlobalKey();
     _model = SingletonModel.withContext(context);
+    _processAdd = false;
+  }
+
+  Future _cekSession() async {
+    if (!_processAdd) {
+      setState(() {
+        _processAdd = true;
+      });
+      int jumlah = 0;
+      for (var d in _model.item) {
+        jumlah += d.jumlahItem;
+      }
+      return Future.delayed(const Duration(milliseconds: 5900), () {
+        session.getSession().then((value) {
+          if (value != null) {
+            if (jumlah < 5) {
+              setState(() {
+                _model.item.add(SelectedItemModel(
+                  items: widget.data,
+                  jumlahItem: 1,
+                ));
+              });
+            } else {
+              Helper().showToast("Max 5 items can be added!");
+            }
+          } else {
+            Helper().jumpToPage(context, page: const OnBoardPage());
+          }
+        });
+        setState(() {
+          _processAdd = false;
+        });
+      });
+    }
+    setState(() {
+      _processAdd = false;
+    });
   }
 
   @override
@@ -37,9 +78,9 @@ class _DetailHomePageState extends State<DetailHomePage> {
   Widget _buildBody() {
     double width = MediaQuery.of(context).size.width;
     int jumlah = 0;
-    _model.item.forEach((d) {
+    for (var d in _model.item) {
       jumlah += d.jumlahItem;
-    });
+    }
     return Stack(
       children: [
         Container(
@@ -109,7 +150,8 @@ class _DetailHomePageState extends State<DetailHomePage> {
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(
-                                const Radius.circular(10)),
+                              Radius.circular(10),
+                            ),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.5),
@@ -226,25 +268,17 @@ class _DetailHomePageState extends State<DetailHomePage> {
                               borderRadius: BorderRadius.circular(22.0)),
                           child: MaterialButton(
                             minWidth: double.infinity,
-                            onPressed: () {
-                              if (jumlah < 5) {
-                                setState(() {
-                                  _model.item.add(SelectedItemModel(
-                                    items: widget.data,
-                                    jumlahItem: 1,
-                                  ));
-                                });
-                              } else {
-                                Helper().showToast("Max 5 items can be added!");
-                              }
-                            },
-                            child: const Text(
-                              "Add to basket",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
+                            onPressed: _cekSession,
+                            child: _processAdd
+                                ? SpinKitThreeBounce(
+                                    color: Colors.white, size: 24)
+                                : const Text(
+                                    "Add to basket",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                           ),
                         )
                       : Row(

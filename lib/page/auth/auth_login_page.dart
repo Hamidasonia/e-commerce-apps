@@ -1,11 +1,9 @@
 import 'package:e_commerce_apps/api/api.dart';
 import 'package:e_commerce_apps/api/session_manager.dart';
 import 'package:e_commerce_apps/common/constans/general.dart';
-import 'package:e_commerce_apps/main.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
 import 'package:e_commerce_apps/model/user_model.dart';
 import 'package:e_commerce_apps/page/auth/auth_register_page.dart';
-import 'package:e_commerce_apps/page/home/home_page.dart';
 import 'package:e_commerce_apps/page/main_page.dart';
 import 'package:e_commerce_apps/tool/helper.dart';
 import 'package:e_commerce_apps/tool/hex_color.dart';
