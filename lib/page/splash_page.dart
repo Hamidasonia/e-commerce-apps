@@ -40,7 +40,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   void _checkData() {
     _model.item = [];
-    _model.isLogin = false;
+    // _model.isLogin = false;
     // _model.user.data.users = [];
   }
 
