@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage>
   List<ItemModel> _data;
   List<ItemModel> _dataLaptop;
   List<ItemModel> _dataDrone;
+  List<ItemModel> _dataPhone;
   SingletonModel _model;
 
   @override
@@ -139,6 +140,25 @@ class _HomePageState extends State<HomePage>
         title: "Get Nike Band LED",
         descriptions:
             "Available discount for purchase this year. Let's update your device.",
+      ),
+    ];
+    _dataPhone = [
+      ItemModel(
+        id: 5,
+        image: "assets/images/product_6.jpg",
+        detailImage: "assets/images/detail_product_6.jpg",
+        name: "Smartphone",
+        version: "Vivo . Y30i",
+        price: 131,
+        colors: [
+          ColorsModel(
+            colorName: "Ocean",
+            colorCode: HexColor("#42f5f5"),
+          )
+        ],
+        title: "Get Vivo Y30i",
+        descriptions:
+        "Available discount for purchase this year. Let's update your device.",
       ),
     ];
   }
@@ -453,7 +473,88 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _phones() {
-    return Container();
+    return ListView.separated(
+      padding: const EdgeInsets.all(20),
+      itemCount: _dataPhone.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return Stack(
+          children: [
+            InkWell(
+              onTap: () => _helper.jumpToPage(context,
+                  page: DetailHomePage(data: _dataPhone[index])),
+              child: Container(
+                margin: const EdgeInsets.only(top: 40),
+                height: 220,
+                width: 190,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      _dataPhone[index].name,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      _dataPhone[index].version,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.attach_money,
+                          color: HexColor("#5956E9"),
+                          size: 15,
+                        ),
+                        Text(
+                          "${_dataPhone[index].price}",
+                          style: TextStyle(
+                            color: HexColor("#5956E9"),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30)
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              left: Constants.padding,
+              right: Constants.padding,
+              top: Constants.padding - 5,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  _dataPhone[index].image,
+                ),
+                maxRadius: 60,
+              ),
+            ),
+          ],
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(width: 20);
+      },
+    );
   }
 
   Widget _drones() {
