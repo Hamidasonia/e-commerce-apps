@@ -4,7 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class QueryDatabase {
   static String loginUser = """
   query loginUser(\$email: String, \$password: String){
-  users(where: {email: {_eq: \$email}, password: {_eq: \$password}}){
+  user(where: {email: {_eq: \$email}, password: {_eq: \$password}}){
     id
     fullname
     email
@@ -17,7 +17,7 @@ class QueryDatabase {
 
   static String registerUser = """
   mutation addDataUser(\$fullname: String, \$username: String, \$email: String, \$password: String, \$tgl_daftar: date){
-  insert_users(objects: {fullname: \$fullname, username: \$username, email: \$email, password: \$password, tgl_daftar: \$tgl_daftar}){
+  insert_user(objects: {fullname: \$fullname, username: \$username, email: \$email, password: \$password, tgl_daftar: \$tgl_daftar}){
     returning {
       id
       fullname
@@ -30,13 +30,26 @@ class QueryDatabase {
 }
   """;
 
-  static HttpLink httpLink = HttpLink(
-      "https://discrete-grouse-84.hasura.app/v1/graphql",
-      defaultHeaders: {
-        "content_type": "application/json",
-        "x-hasura-admin-secret":
-            "c63wgyw7Q7fb1KsLqVx6HVHXCI8375QxHG2UiO3pblCk35Bqm5x0zKB0awGxDCwy",
-      });
+  static String checkout = """
+  mutation addDataOrder(\$product: String, \$total_price: int, \$order_date: date, \$user_id: int){
+  insert_order(objects: {product: \$product, total_price: \$total_price, order_date: \$order_date, user_id: \$user_id}){
+    returning {
+       id
+       product
+       total_price
+       order_date
+       user_id
+    }
+  }
+}
+  """;
+
+  static HttpLink httpLink =
+      HttpLink("https://yusuf-nizam.hasura.app/v1/graphql", defaultHeaders: {
+    "content_type": "application/json",
+    "x-hasura-admin-secret":
+        "ef5KaPVQooAPi07Sd0ePoAfsKbMn2JUjLOC2upUqhFCL6ZSCN5nFSEaxhbk57uWE",
+  });
 
   static Link link = httpLink;
   static ValueNotifier<GraphQLClient> client =

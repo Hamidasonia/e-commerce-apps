@@ -1,7 +1,13 @@
+import 'package:e_commerce_apps/api/api.dart';
+import 'package:e_commerce_apps/common/constans/general.dart';
+import 'package:e_commerce_apps/model/app/order_model.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
 import 'package:e_commerce_apps/tool/helper.dart';
 import 'package:e_commerce_apps/tool/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:intl/intl.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key key}) : super(key: key);
@@ -13,12 +19,52 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   GlobalKey<ScaffoldState> _scaffoldKey;
   SingletonModel _model;
+  bool _processCheckout;
+  bool _isSubmit;
+  String _tglOrder;
 
   @override
   void initState() {
     super.initState();
     _scaffoldKey = GlobalKey();
     _model = SingletonModel.withContext(context);
+    _processCheckout = false;
+    _isSubmit = false;
+    _tglOrder = DateFormat("yyyy-MM-dd").format(DateTime.now());
+  }
+
+  Future<OrderModel> _checkout() async {
+    try {
+      setState(() {
+        _isSubmit = true;
+      });
+      final MutationOptions options =
+          MutationOptions(document: gql(QueryDatabase.checkout), variables: {
+        'product': "TEST",
+        'total_price': 5000,
+        'order_date': _tglOrder,
+        'user_id': 1,
+      });
+      final QueryResult result =
+          await QueryDatabase.client.value.mutate(options);
+      printLog("${result.data} IKI LEK");
+      if (result.data.isNotEmpty) {
+        setState(() {
+          _isSubmit = false;
+          Helper().showToast("Success Checkout!");
+        });
+      } else {
+        setState(() {
+          _isSubmit = false;
+          Helper().showToast("Checkout Failed!");
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isSubmit = false;
+        Helper().showToast(e.toString());
+      });
+    }
   }
 
   @override
@@ -166,7 +212,8 @@ class _CartPageState extends State<CartPage> {
                                       // element.items.id == _model.item[index].id)
                                       //     .first;
                                       setState(() {
-                                        if (_model.item[index].jumlahItem == 1) {
+                                        if (_model.item[index].jumlahItem ==
+                                            1) {
                                           _model.item.removeWhere((element) =>
                                               element.items.id ==
                                               _model.item[index].items.id);
@@ -278,14 +325,19 @@ class _CartPageState extends State<CartPage> {
                 borderRadius: BorderRadius.circular(22.0)),
             child: MaterialButton(
               minWidth: double.infinity,
-              onPressed: () {},
-              child: const Text(
-                "Checkout",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
-              ),
+              onPressed: _checkout,
+              child: _isSubmit
+                  ? SpinKitThreeBounce(
+                      color: Colors.black,
+                      size: 24,
+                    )
+                  : const Text(
+                      "Checkout",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
             ),
           ),
         ),

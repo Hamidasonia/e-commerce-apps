@@ -100,6 +100,7 @@ class _LoginPageState extends State<LoginPage>
         setState(() {
           session.saveSession(user[0].id);
           _model.isLogin = false;
+          _model.id = user[0].id;
           _helper.moveToPage(context, page: MainPage());
         });
       } else {

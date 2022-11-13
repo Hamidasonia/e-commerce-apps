@@ -22,11 +22,11 @@ class Data {
   InsertUsers insertUsers;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    insertUsers: InsertUsers.fromJson(json["insert_users"]),
+    insertUsers: InsertUsers.fromJson(json["insert_user"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "insert_users": insertUsers.toJson(),
+    "insert_user": insertUsers.toJson(),
   };
 }
 
