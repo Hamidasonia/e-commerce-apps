@@ -22,11 +22,11 @@ class Data {
   List<User> users;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    users: List<User>.from(json["users"].map((x) => User.fromJson(x))),
+    users: List<User>.from(json["user"].map((x) => User.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
-    "users": List<dynamic>.from(users.map((x) => x.toJson())),
+    "user": List<dynamic>.from(users.map((x) => x.toJson())),
   };
 }
 

@@ -20,6 +20,8 @@ class SingletonModel {
 
   bool isLogin;
   UserModel user;
+  User userModel;
+  int id;
   String onindoToken;
   BuildContext context;
   List<SelectedItemModel> item;
