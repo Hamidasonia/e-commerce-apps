@@ -41,7 +41,7 @@ class _CartPageState extends State<CartPage> {
         'product': _model.item[0].items.name,
         'total_price': _model.item[0].items.price,
         'order_date': _tglOrder,
-        'user_id': 1,
+        'user_id': _model.id,
       });
       final QueryResult result =
           await QueryDatabase.client.value.mutate(options);
