@@ -31,7 +31,7 @@ class QueryDatabase {
   """;
 
   static String checkout = """
-  mutation addDataOrder(\$product: String, \$total_price: int, \$order_date: date, \$user_id: int){
+  mutation addDataOrder(\$product: String, \$total_price: Int, \$order_date: date, \$user_id: Int){
   insert_order(objects: {product: \$product, total_price: \$total_price, order_date: \$order_date, user_id: \$user_id}){
     returning {
        id

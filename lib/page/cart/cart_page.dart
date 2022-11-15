@@ -19,7 +19,6 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   GlobalKey<ScaffoldState> _scaffoldKey;
   SingletonModel _model;
-  bool _processCheckout;
   bool _isSubmit;
   String _tglOrder;
 
@@ -28,7 +27,6 @@ class _CartPageState extends State<CartPage> {
     super.initState();
     _scaffoldKey = GlobalKey();
     _model = SingletonModel.withContext(context);
-    _processCheckout = false;
     _isSubmit = false;
     _tglOrder = DateFormat("yyyy-MM-dd").format(DateTime.now());
   }
@@ -40,8 +38,8 @@ class _CartPageState extends State<CartPage> {
       });
       final MutationOptions options =
           MutationOptions(document: gql(QueryDatabase.checkout), variables: {
-        'product': "TEST",
-        'total_price': 5000,
+        'product': _model.item[0].items.name,
+        'total_price': _model.item[0].items.price,
         'order_date': _tglOrder,
         'user_id': 1,
       });
