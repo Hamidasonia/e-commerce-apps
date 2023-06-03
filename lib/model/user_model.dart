@@ -1,35 +1,67 @@
 class UserModel {
   UserModel({
-    this.name,
-    this.email,
-    this.phone,
-    this.token,
-    this.isVerified,
-    this.avatarUrl,
+    this.data,
   });
 
-  String name;
-  String email;
-  String phone;
-  String token;
-  bool isVerified;
-  String avatarUrl;
+  Data data;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    name: json["name"],
-    email: json["email"],
-    phone: json["phone"],
-    token: json["token"],
-    isVerified: json["is_verified"],
-    avatarUrl: json["avatar_url"],
+    data: Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
+    "data": data.toJson(),
+  };
+}
+
+class Data {
+  Data({
+    this.users,
+  });
+
+  List<User> users;
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    users: List<User>.from(json["user"].map((x) => User.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "user": List<dynamic>.from(users.map((x) => x.toJson())),
+  };
+}
+
+class User {
+  User({
+    this.id,
+    this.fullname,
+    this.email,
+    this.username,
+    this.password,
+    this.tglDaftar,
+  });
+
+  int id;
+  String fullname;
+  String email;
+  String username;
+  String password;
+  DateTime tglDaftar;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    id: json["id"],
+    fullname: json["fullname"],
+    email: json["email"],
+    username: json["username"],
+    password: json["password"],
+    tglDaftar: DateTime.parse(json["tgl_daftar"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "fullname": fullname,
     "email": email,
-    "phone": phone,
-    "token": token,
-    "is_verified": isVerified,
-    "avatar_url": avatarUrl,
+    "username": username,
+    "password": password,
+    "tgl_daftar": "${tglDaftar.year.toString().padLeft(4, '0')}-${tglDaftar.month.toString().padLeft(2, '0')}-${tglDaftar.day.toString().padLeft(2, '0')}",
   };
 }

@@ -1,5 +1,6 @@
 import 'package:e_commerce_apps/common/constans.dart';
-import 'package:e_commerce_apps/page/auth/login_page.dart';
+import 'package:e_commerce_apps/page/auth/auth_login_page.dart';
+import 'package:e_commerce_apps/page/auth/auth_register_page.dart';
 import 'package:e_commerce_apps/tool/helper.dart';
 import 'package:e_commerce_apps/tool/hex_color.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,11 @@ class _OnBoardPageState extends State<OnBoardPage> {
         children: [
           Positioned(
             bottom: 70,
-              child: Image.asset(kImgAssetOnBoard, width: 360,)),
+            child: Image.asset(
+              kImgAssetOnBoard,
+              width: 360,
+            ),
+          ),
           _buildBody()
         ],
       ),
@@ -71,8 +76,28 @@ class _OnBoardPageState extends State<OnBoardPage> {
                   );
                 },
                 child: Text(
-                  "Get started",
+                  "Login",
                   style: TextStyle(fontSize: 16, color: HexColor("#5956E9")),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Material(
+              clipBehavior: Clip.antiAlias,
+              color: HexColor("#5956E9"),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: MaterialButton(
+                minWidth: 300,
+                onPressed: () {
+                  _helper.jumpToPage(
+                    context,
+                    page: RegisterPage(),
+                  );
+                },
+                child: const Text(
+                  "Register",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),

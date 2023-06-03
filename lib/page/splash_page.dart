@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:e_commerce_apps/common/constans.dart';
 import 'package:e_commerce_apps/model/app/singleton_model.dart';
-import 'package:e_commerce_apps/page/onboard_page.dart';
+import 'package:e_commerce_apps/page/main_page.dart';
 import 'package:e_commerce_apps/tool/permissions_service.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +29,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _controller.forward();
     _model = SingletonModel.withContext(context);
     _checkPermission();
+    // _cekSession();
     _startSplash();
   }
 
@@ -39,6 +40,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   void _checkData() {
     _model.item = [];
+    // _model.isLogin = false;
+    // _model.user.data.users = [];
   }
 
   @override
@@ -51,7 +54,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     var duration = const Duration(milliseconds: 5900);
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return const OnBoardPage();
+        return MainPage();
       }));
     });
   }

@@ -1,7 +1,7 @@
-import 'package:e_commerce_apps/model/app/home/wearable_model.dart';
+import 'package:e_commerce_apps/model/app/home/item_model.dart';
 
 class SelectedItemModel {
-  WearableModel items;
+  ItemModel items;
   int jumlahItem;
 
   SelectedItemModel({this.items, this.jumlahItem});

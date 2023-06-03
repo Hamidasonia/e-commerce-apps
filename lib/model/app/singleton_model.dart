@@ -18,7 +18,10 @@ class SingletonModel {
 
   static SingletonModel get shared => _singleton;
 
+  bool isLogin;
   UserModel user;
+  User userModel;
+  int id;
   String onindoToken;
   BuildContext context;
   List<SelectedItemModel> item;
